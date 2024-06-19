@@ -1,10 +1,8 @@
 import * as bitcoin from "bitcoinjs-lib";
 import { initEccLib, networks } from "bitcoinjs-lib";
-import * as ecc from "tiny-secp256k1";
+import ecc from "@bitcoinerlab/secp256k1";
 import BIP32Factory, { type BIP32Interface } from "bip32";
 import ECPairFactory, { type ECPairInterface } from "ecpair";
-import dotenv from "dotenv";
-import { type PublicKey, SecretKey } from "@cmdcode/crypto-utils";
 
 interface IWIFWallet {
   networkType: string;
@@ -13,7 +11,6 @@ interface IWIFWallet {
 
 const TESTNET = "testnet";
 
-dotenv.config();
 initEccLib(ecc);
 
 const ECPair = ECPairFactory(ecc);
@@ -25,9 +22,9 @@ export class WIFWallet {
   public address: string;
   public output: Buffer;
   public publicKey: string;
-  public seckey?: SecretKey;
+  public seckey?: any;
   public secret: any;
-  public pubkey: PublicKey;
+  public pubkey: any;
 
   constructor(walletParam: IWIFWallet) {
     if (walletParam.networkType == TESTNET) {
@@ -39,8 +36,11 @@ export class WIFWallet {
     this.ecPair = ECPair.fromWIF(walletParam.privateKey, this.network);
 
     this.secret = this.ecPair.privateKey?.toString("hex");
-    this.seckey = new SecretKey(this.secret, { type: "taproot" });
-    this.pubkey = this.seckey.pub;
+    // Extract the private key in hexadecimal format
+    this.secret = this.ecPair.toWIF();
+
+    // Extract the public key in hexadecimal format
+    this.pubkey = this.ecPair.publicKey.toString("hex");
 
     const { address, output } = bitcoin.payments.p2tr({
       internalPubkey: this.ecPair.publicKey.subarray(1, 33),

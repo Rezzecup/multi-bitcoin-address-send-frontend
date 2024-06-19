@@ -1,6 +1,10 @@
+"use client";
 import React, { useEffect, useState, useRef } from "react";
 import { networks, Network } from "bitcoinjs-lib";
 import { sendBitcoin } from "../utils/sendBtc";
+import { decl } from "postcss";
+
+declare var window: any;
 
 const ConnectWalletBtn = () => {
   const [unisatInstalled, setUnisatInstalled] = useState(false);

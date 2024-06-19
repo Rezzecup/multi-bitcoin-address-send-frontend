@@ -1,4 +1,4 @@
-import * as ecc from "tiny-secp256k1";
+import ecc from "@bitcoinerlab/secp256k1";
 import { initEccLib, networks } from "bitcoinjs-lib";
 import { WIFWallet } from "./WIFWallet";
 
