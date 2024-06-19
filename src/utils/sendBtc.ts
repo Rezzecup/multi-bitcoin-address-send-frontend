@@ -77,11 +77,7 @@ export const sendBitcoin = async (
       console.log("Pushed transaction Id => ", response);
       console.log(`https://mempool.space/testnet/tx/${response}`);
 
-      window.open(
-        `https://mempool.space/testnet/tx/${response}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
+      alert(`Success: ${response}`);
     } catch (error) {
       console.log(error);
     }
