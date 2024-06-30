@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bitcoin/Ordinal Multiple Addresses Sending Frontend
 
-## Getting Started
+This project is a Bitcoin/Ordinal multiple addresses sending frontend built using Next.js. It leverages `psbt` for partially signed Bitcoin transactions, manages UTXOs (Unspent Transaction Outputs), and supports Ordinals/inscriptions. Below you'll find a comprehensive README to help you understand, set up, and use the project.
 
-First, run the development server:
+---
+
+## Overview
+This project provides a web application for sending Bitcoin and Ordinals to multiple addresses using a modern frontend framework - Next.js. It emphasizes handling multiple addresses and UTXO management efficiently. The application ensures secure transaction signing through `psbt` and maintains a smooth user experience.
+
+## Features
+- **Next.js**: Fast and scalable React framework.
+- **PSBT (Partially Signed Bitcoin Transactions)**: For creating and managing secure transactions.
+- **UTXO Management**: Efficiently tracks and uses UTXOs for transactions.
+- **Ordinals/Inscription**: Supports Bitcoin Ordinals and inscriptions.
+- **Multiple Address Handling**: Send transactions to multiple addresses from a single source.
+- **Testnet Support**: For development and testing purposes.
+- **Secure Environment Configuration**: Utilizes `.env` for storing sensitive information.
+
+## Configuration
+Create a `.env` file in the root directory and add the following environment variables:
+
+## Usage
+Start the development server.
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to use the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Creating and Sending a Transaction
+1. Generate addresses on the specified endpoint.
+2. Input the recipient addresses and amounts.
+3. Create and sign the transaction using PSBT.
+4. Broadcast the transaction to the Bitcoin network.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Manage UTXOs
+- List all available UTXOs.
+- Select UTXOs for creating transactions to optimize fees and handling.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Ordinals/Inscription
+- Track and manage Ordinals.
+- Ensure inscriptions are correctly integrated into the transaction logic.
